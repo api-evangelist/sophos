@@ -8,20 +8,40 @@ image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - API
 created: '2025-02-08'
-modified: '2025-02-08'
+modified: '2026-03-16'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/sophos/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: sophos:sophos
-    name: Sophos
-    description: 'Sophos Central APIsAutomate Your Security '
-    humanURL: https://developer.sophos.com/apis
+  - aid: sophos:sophos-central-api
+    name: Sophos Central API
+    description: >-
+      APIs for automating security operations in Sophos Central, including
+      partner, organization, tenant, common, and endpoint APIs for managing
+      endpoints, policies, alerts, and security events.
+    humanURL: https://developer.sophos.com/
     tags:
-      - API
+      - Security
+      - Endpoint Protection
+      - Cybersecurity
     properties:
       - type: Documentation
+        url: https://developer.sophos.com/intro
+      - type: Reference
         url: https://developer.sophos.com/apis
+      - type: Getting Started
+        url: https://developer.sophos.com/getting-started
+      - type: Change Log
+        url: https://developer.sophos.com/whatsnew
+common:
+  - type: Portal
+    url: https://developer.sophos.com/
+  - type: Documentation
+    url: https://developer.sophos.com/intro
+  - type: Website
+    url: https://www.sophos.com/
+  - type: Community
+    url: https://community.sophos.com/sophos-central-api
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
