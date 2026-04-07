@@ -1,6 +1,7 @@
 aid: sophos
 name: Sophos
-description: 'Sophos Central APIsAutomate Your Security '
+description: >-
+  Sophos Central APIsAutomate Your Security.
 type: Index
 position: Consumer
 access: 3rd-Party
