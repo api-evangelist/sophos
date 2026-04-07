@@ -6,8 +6,7 @@ type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
+tags: []
 created: '2025-02-08'
 modified: '2026-03-16'
 url: >-
@@ -22,9 +21,9 @@ apis:
       endpoints, policies, alerts, and security events.
     humanURL: https://developer.sophos.com/
     tags:
-      - Security
-      - Endpoint Protection
       - Cybersecurity
+      - Endpoint Protection
+      - Security
     properties:
       - type: Documentation
         url: https://developer.sophos.com/intro
