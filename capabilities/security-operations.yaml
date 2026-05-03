@@ -1,0 +1,108 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Sophos Security Operations"
+  description: >-
+    Unified capability for security operations using the Sophos Central SIEM API.
+    Combines alert retrieval and event monitoring to support SOC analysts performing
+    threat detection, incident triage, and security event analysis workflows.
+  tags:
+    - Sophos
+    - Security Operations
+    - SIEM
+    - Threat Detection
+    - Incident Response
+    - Cybersecurity
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SOPHOS_API_KEY: SOPHOS_API_KEY
+      SOPHOS_BEARER_TOKEN: SOPHOS_BEARER_TOKEN
+
+capability:
+  consumes:
+    - import: sophos-siem
+      location: ./shared/sophos-central-siem.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: sophos-security-ops-api
+      description: "Unified REST API for Sophos security operations including alerts and event monitoring."
+      resources:
+        - path: /v1/alerts
+          name: alerts
+          description: Security alerts from Sophos Central
+          operations:
+            - method: GET
+              name: list-alerts
+              description: List security alerts from Sophos Central within the last 24 hours
+              call: "sophos-siem.list-alerts"
+              with:
+                cursor: "rest.cursor"
+                from_date: "rest.from_date"
+                limit: "rest.limit"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/events
+          name: events
+          description: Security events from Sophos Central
+          operations:
+            - method: GET
+              name: list-events
+              description: List security events from Sophos Central within the last 24 hours
+              call: "sophos-siem.list-events"
+              with:
+                cursor: "rest.cursor"
+                from_date: "rest.from_date"
+                exclude_types: "rest.exclude_types"
+                limit: "rest.limit"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: sophos-security-ops-mcp
+      transport: http
+      description: "MCP server for AI-assisted security operations using Sophos Central SIEM."
+      tools:
+        - name: list-security-alerts
+          description: >-
+            Retrieve security alerts from Sophos Central. Use for threat detection,
+            incident triage, and monitoring active security events. Supports cursor
+            pagination and date filtering.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sophos-siem.list-alerts"
+          with:
+            cursor: "tools.cursor"
+            from_date: "tools.from_date"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-security-events
+          description: >-
+            Retrieve security events from Sophos Central. Use for SIEM integration,
+            log analysis, and security monitoring. Supports filtering by event type
+            exclusions and date ranges.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sophos-siem.list-events"
+          with:
+            cursor: "tools.cursor"
+            from_date: "tools.from_date"
+            exclude_types: "tools.exclude_types"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."

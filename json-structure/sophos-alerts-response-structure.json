@@ -1,0 +1,39 @@
+{
+  "title": "Sophos Alerts Response Structure",
+  "description": "Structure of the response from the Sophos Central SIEM API alerts endpoint",
+  "type": "object",
+  "fields": [
+    {
+      "name": "items",
+      "type": "array",
+      "description": "Array of security alert objects",
+      "items": {
+        "type": "object",
+        "fields": [
+          { "name": "id", "type": "string", "description": "Alert unique identifier" },
+          { "name": "when", "type": "string", "format": "date-time", "description": "Alert timestamp" },
+          { "name": "severity", "type": "string", "enum": ["low", "medium", "high"] },
+          { "name": "category", "type": "string", "description": "Alert category" },
+          { "name": "description", "type": "string", "description": "Alert description" },
+          { "name": "customer_id", "type": "string" },
+          { "name": "tenant_id", "type": "string" },
+          { "name": "location", "type": "string" },
+          { "name": "source", "type": "string" },
+          { "name": "threat", "type": "string" },
+          { "name": "endpoint_id", "type": "string" },
+          { "name": "endpoint_type", "type": "string" }
+        ]
+      }
+    },
+    {
+      "name": "has_more",
+      "type": "boolean",
+      "description": "Whether additional pages of results exist"
+    },
+    {
+      "name": "next_cursor",
+      "type": "string",
+      "description": "Cursor value for fetching the next page"
+    }
+  ]
+}

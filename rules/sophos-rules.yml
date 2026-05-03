@@ -1,0 +1,94 @@
+extends: spectral:oas
+rules:
+  # Sophos API uses x-api-key header + Bearer token dual auth - enforce both
+  sophos-requires-api-key-header:
+    description: All Sophos SIEM operations must require the x-api-key header parameter
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].parameters[?(@.name == 'x-api-key')]"
+    then:
+      field: required
+      function: truthy
+
+  # All operations must have summaries in Title Case
+  sophos-operation-summary-title-case:
+    description: Operation summaries must use Title Case
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*([ ][A-Z][a-zA-Z0-9]*)*$"
+
+  # All operations must have tags
+  sophos-operation-has-tags:
+    description: All operations must have at least one tag
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  # Pagination cursor pattern - Sophos uses cursor-based pagination
+  sophos-cursor-pagination:
+    description: Sophos APIs use cursor-based pagination; use 'cursor' query parameter
+    severity: info
+    given: "$.paths[*][get].parameters[?(@.name == 'limit')]"
+    then:
+      field: schema.maximum
+      function: defined
+
+  # Operations must have 401 response for missing auth
+  sophos-401-response:
+    description: Operations with auth must document 401 Unauthorized response
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      field: "401"
+      function: defined
+
+  # Operations must have operationId
+  sophos-operation-id-required:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  # operationId must use camelCase
+  sophos-operation-id-camel-case:
+    description: OperationId must use camelCase convention
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  # Response schemas must be defined
+  sophos-response-schema-defined:
+    description: Successful responses must have a schema
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses['200','201'].content['application/json']"
+    then:
+      field: schema
+      function: defined
+
+  # All tags must be Title Case
+  sophos-tags-title-case:
+    description: All tags in the spec must use Title Case
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*([ ][A-Z][a-zA-Z0-9]*)*$"
+
+  # Security must be defined at global or operation level
+  sophos-security-defined:
+    description: Security must be defined at the global or operation level
+    severity: error
+    given: "$"
+    then:
+      field: security
+      function: defined

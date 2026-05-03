@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api1.central.sophos.com/gateway/siem/v1/alerts",
+    "headers": {
+      "x-api-key": "your-api-key-here",
+      "Authorization": "Bearer your-bearer-token-here"
+    },
+    "queryParameters": {
+      "limit": 50,
+      "from_date": 1746009600
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "items": [
+        {
+          "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "when": "2026-05-02T10:15:00.000Z",
+          "severity": "high",
+          "category": "malware",
+          "description": "Malware 'Troj/Ransom-EX' detected on endpoint WORKSTATION-01",
+          "customer_id": "cust-12345",
+          "tenant_id": "tenant-67890",
+          "location": "WORKSTATION-01",
+          "source": "sophos-av",
+          "threat": "Troj/Ransom-EX",
+          "endpoint_id": "ep-abcdef123456",
+          "endpoint_type": "computer"
+        },
+        {
+          "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+          "when": "2026-05-02T09:42:00.000Z",
+          "severity": "medium",
+          "category": "pua",
+          "description": "Potentially unwanted application detected on SERVER-02",
+          "customer_id": "cust-12345",
+          "tenant_id": "tenant-67890",
+          "location": "SERVER-02",
+          "source": "sophos-av",
+          "threat": "PUA/CoinMiner-A",
+          "endpoint_id": "ep-bcdef1234567",
+          "endpoint_type": "server"
+        }
+      ],
+      "has_more": false,
+      "next_cursor": null
+    }
+  }
+}

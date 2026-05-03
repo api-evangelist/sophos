@@ -1,0 +1,58 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "sophos": "https://developer.sophos.com/vocab/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Alert": "sophos:Alert",
+    "Event": "sophos:Event",
+    "SecurityEvent": "schema:Action",
+
+    "id": "@id",
+    "when": {
+      "@id": "schema:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "severity": {
+      "@id": "sophos:severity",
+      "@type": "xsd:string"
+    },
+    "category": {
+      "@id": "schema:category",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "customer_id": {
+      "@id": "sophos:customerId",
+      "@type": "xsd:string"
+    },
+    "tenant_id": {
+      "@id": "sophos:tenantId",
+      "@type": "xsd:string"
+    },
+    "location": {
+      "@id": "schema:location",
+      "@type": "xsd:string"
+    },
+    "source": {
+      "@id": "schema:source",
+      "@type": "xsd:string"
+    },
+    "threat": {
+      "@id": "sophos:threat",
+      "@type": "xsd:string"
+    },
+    "endpoint_id": {
+      "@id": "sophos:endpointId",
+      "@type": "xsd:string"
+    },
+    "endpoint_type": {
+      "@id": "sophos:endpointType",
+      "@type": "xsd:string"
+    }
+  }
+}

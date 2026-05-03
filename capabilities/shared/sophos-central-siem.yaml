@@ -1,0 +1,174 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Sophos Central SIEM API"
+  description: >-
+    The Sophos Central SIEM API provides access to security alerts and events for
+    automating threat detection, incident response, and SIEM integration. Retrieve
+    real-time alerts and events from Sophos Central to feed into security operations
+    tooling.
+  tags:
+    - Cybersecurity
+    - SIEM
+    - Alerts
+    - Events
+    - Security Operations
+    - Threat Detection
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SOPHOS_API_KEY: SOPHOS_API_KEY
+      SOPHOS_BEARER_TOKEN: SOPHOS_BEARER_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: sophos-siem
+      baseUri: https://api1.central.sophos.com/gateway
+      description: "Sophos Central SIEM API for retrieving security alerts and events"
+      authentication:
+        type: apikey
+        key: x-api-key
+        value: "{{SOPHOS_API_KEY}}"
+        placement: header
+      resources:
+        - name: alerts
+          path: /siem/v1/alerts
+          description: Security alerts from Sophos Central
+          operations:
+            - name: list-alerts
+              method: GET
+              description: Retrieve security alerts for the customer within the last 24 hours
+              inputParameters:
+                - name: cursor
+                  in: query
+                  type: string
+                  required: false
+                  description: Pagination cursor for next page of results
+                - name: from_date
+                  in: query
+                  type: integer
+                  required: false
+                  description: Unix timestamp UTC specifying start date (within last 24 hours)
+                - name: from_date_offset_minutes
+                  in: query
+                  type: integer
+                  required: false
+                  description: Delay data collection by X minutes
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: Maximum alerts to return (default 200, max 1000)
+                - name: Authorization
+                  in: header
+                  type: string
+                  required: true
+                  description: Bearer token for authentication
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: events
+          path: /siem/v1/events
+          description: Security events from Sophos Central
+          operations:
+            - name: list-events
+              method: GET
+              description: Retrieve security events for the customer within the last 24 hours
+              inputParameters:
+                - name: cursor
+                  in: query
+                  type: string
+                  required: false
+                  description: Pagination cursor for next page of results
+                - name: from_date
+                  in: query
+                  type: integer
+                  required: false
+                  description: Unix timestamp UTC specifying start date
+                - name: from_date_offset_minutes
+                  in: query
+                  type: integer
+                  required: false
+                  description: Delay data collection by X minutes
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: Maximum events to return (default 200, max 1000)
+                - name: exclude_types
+                  in: query
+                  type: string
+                  required: false
+                  description: Comma-separated event types to exclude
+                - name: Authorization
+                  in: header
+                  type: string
+                  required: true
+                  description: Bearer token for authentication
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: sophos-siem-rest
+      resources:
+        - path: /v1/alerts
+          name: alerts
+          description: Security alerts from Sophos Central
+          operations:
+            - method: GET
+              name: list-alerts
+              description: List security alerts from Sophos Central
+
+        - path: /v1/events
+          name: events
+          description: Security events from Sophos Central
+          operations:
+            - method: GET
+              name: list-events
+              description: List security events from Sophos Central
+
+    - type: mcp
+      port: 9100
+      namespace: sophos-siem-mcp
+      transport: http
+      tools:
+        - name: list-alerts
+          description: Retrieve security alerts from Sophos Central SIEM API
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sophos-siem.list-alerts"
+          with:
+            cursor: "tools.cursor"
+            from_date: "tools.from_date"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-events
+          description: Retrieve security events from Sophos Central SIEM API
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sophos-siem.list-events"
+          with:
+            cursor: "tools.cursor"
+            from_date: "tools.from_date"
+            exclude_types: "tools.exclude_types"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."
