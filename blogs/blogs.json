@@ -1,0 +1,13 @@
+{
+  "repo": "sophos",
+  "feeds": [
+    {
+      "source": "https://news.sophos.com/",
+      "feed_url": "https://www.sophos.com/en-us/blog/feed",
+      "saved": 9,
+      "title": "Sophos Blogs"
+    }
+  ],
+  "post_count": 9,
+  "fetched": "2026-05-03T23:36:57Z"
+}
