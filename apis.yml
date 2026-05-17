@@ -43,9 +43,9 @@ apis:
         url: https://developer.sophos.com/intro
       - type: Reference
         url: https://developer.sophos.com/apis
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.sophos.com/getting-started
-      - type: Change Log
+      - type: ChangeLog
         url: https://developer.sophos.com/whatsnew
       - type: OpenAPI
         url: >-
