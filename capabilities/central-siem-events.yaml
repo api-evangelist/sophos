@@ -1,0 +1,123 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sophos Central SIEM API — Events
+  description: 'Sophos Central SIEM API — Events. 1 operations. Lead operation: List Security Events. Self-contained Naftiko
+    capability covering one Sophos business surface.'
+  tags:
+  - Sophos
+  - Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SOPHOS_API_KEY: SOPHOS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: central-siem-events
+    baseUri: https://api1.central.sophos.com/gateway
+    description: Sophos Central SIEM API — Events business capability. Self-contained, no shared references.
+    resources:
+    - name: siem-v1-events
+      path: /siem/v1/events
+      operations:
+      - name: listevents
+        method: GET
+        description: List Security Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: cursor
+          in: query
+          type: string
+          description: Pagination cursor identifier for fetching the next page of results
+        - name: from_date
+          in: query
+          type: integer
+          description: Unix timestamp in UTC specifying the start date for events. Must be within the last 24 hours.
+        - name: from_date_offset_minutes
+          in: query
+          type: integer
+          description: Delay data collection by the specified number of minutes.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of events to return. Default is 200, maximum is 1000.
+        - name: exclude_types
+          in: query
+          type: string
+          description: Comma-separated list of event types to exclude from the response
+        - name: x-api-key
+          in: header
+          type: string
+          description: API key for authentication
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          description: Bearer token for authentication
+          required: true
+        - name: X-Timestamp
+          in: header
+          type: string
+          description: Optional timestamp header
+    authentication:
+      type: bearer
+      token: '{{env.SOPHOS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: central-siem-events-rest
+    port: 8080
+    description: REST adapter for Sophos Central SIEM API — Events. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/siem/v1/events
+      name: siem-v1-events
+      description: REST surface for siem-v1-events.
+      operations:
+      - method: GET
+        name: listevents
+        description: List Security Events
+        call: central-siem-events.listevents
+        with:
+          cursor: rest.cursor
+          from_date: rest.from_date
+          from_date_offset_minutes: rest.from_date_offset_minutes
+          limit: rest.limit
+          exclude_types: rest.exclude_types
+          x-api-key: rest.x-api-key
+          Authorization: rest.Authorization
+          X-Timestamp: rest.X-Timestamp
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: central-siem-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sophos Central SIEM API — Events. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-security-events
+      description: List Security Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: central-siem-events.listevents
+      with:
+        cursor: tools.cursor
+        from_date: tools.from_date
+        from_date_offset_minutes: tools.from_date_offset_minutes
+        limit: tools.limit
+        exclude_types: tools.exclude_types
+        x-api-key: tools.x-api-key
+        Authorization: tools.Authorization
+        X-Timestamp: tools.X-Timestamp
+      outputParameters:
+      - type: object
+        mapping: $.
