@@ -78,6 +78,8 @@ common:
   url: https://www.sophos.com/en-us/partners
 - type: Pricing
   url: https://www.sophos.com/en-us/products
+- type: LLMsTxt
+  url: https://developer.sophos.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
