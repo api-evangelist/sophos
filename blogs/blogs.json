@@ -2,6 +2,10 @@
   "repo": "sophos",
   "feeds": [
     {
+      "source": "https://www.sophos.com/blog/feed/",
+      "error": "timeout"
+    },
+    {
       "source": "https://support.sophos.com/",
       "feed_url": "https://support.sophos.com/",
       "title": "",
@@ -9,6 +13,6 @@
       "method": "none"
     }
   ],
-  "post_count": 9,
-  "fetched": "2026-06-01T23:35:02Z"
+  "post_count": 11,
+  "fetched": "2026-06-14T20:42:17Z"
 }
