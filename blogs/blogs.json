@@ -2,17 +2,14 @@
   "repo": "sophos",
   "feeds": [
     {
-      "source": "https://www.sophos.com/blog/feed/",
-      "error": "timeout"
-    },
-    {
-      "source": "https://support.sophos.com/",
-      "feed_url": "https://support.sophos.com/",
-      "title": "",
+      "source": "https://news.sophos.com/",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
+      "method": "agent-scrape",
+      "error": "no determinable post dates on listing or post bodies"
     }
   ],
-  "post_count": 11,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T13:12:30Z",
+  "post_count": 14,
+  "agent_pulled": "2026-06-27"
 }

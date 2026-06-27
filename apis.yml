@@ -62,9 +62,9 @@ common:
     url: https://www.sophos.com/
   - type: Community
     url: https://community.sophos.com/sophos-central-api
-  - type: GitHub Org
+  - type: GitHubOrg
     url: https://github.com/sophos
-  - type: Postman Collection
+  - type: PostmanCollection
     url: https://github.com/sophos/sophos-central-apis-postman
   - type: Integrations
     url: https://www.sophos.com/en-us/integrations
@@ -72,13 +72,13 @@ common:
     url: https://support.sophos.com/
   - type: Blog
     url: https://news.sophos.com/
-  - type: Use Cases
+  - type: UseCases
     url: https://www.sophos.com/en-us/use-cases
   - type: Partners
     url: https://www.sophos.com/en-us/partners
   - type: Pricing
     url: https://www.sophos.com/en-us/products
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://developer.sophos.com/llms.txt
 maintainers:
   - FN: Kin Lane
