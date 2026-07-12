@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: developer.sophos.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Oct 12 15:36:01 2026 GMT
+  hsts: null
+- host: www.sophos.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  8 07:34:11 2026 GMT
+  hsts: null
+- host: api1.central.sophos.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan 21 23:59:59 2027 GMT
+  hsts: null
+domains:
+- domain: sophos.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

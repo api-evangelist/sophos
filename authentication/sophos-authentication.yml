@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/sophos-central-siem-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  sources:
+  - openapi/sophos-central-siem-openapi.yml
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/sophos-central-siem-openapi.yml
