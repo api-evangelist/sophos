@@ -52,6 +52,8 @@ apis:
         url: https://developer.sophos.com/
         email: ''
 common:
+  - type: AgenticAccess
+    url: agentic-access/sophos-agentic-access.yml
   - type: DomainSecurity
     url: security/sophos-domain-security.yml
   - type: Authentication
