@@ -6,9 +6,22 @@ description: >-
   tenants to automate security operations including alert management, event retrieval, endpoint policy enforcement, and
   threat response.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sophos.png
 tags:
   - Cybersecurity
   - Endpoint Protection
@@ -21,36 +34,42 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/sophos/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: sophos:sophos-central-siem-api
-    name: Sophos Central SIEM API
-    description: >-
-      The Sophos Central SIEM API provides access to security alerts and events for automating threat detection,
-      incident response, and SIEM integration workflows. Retrieve real-time alerts and events from Sophos Central to
-      feed into security operations tooling and SIEM platforms.
-    humanURL: https://developer.sophos.com/
-    baseURL: https://api1.central.sophos.com/gateway
-    tags:
-      - Cybersecurity
-      - SIEM
-      - Alerts
-      - Events
-      - Security Operations
-    properties:
-      - type: Documentation
-        url: https://developer.sophos.com/intro
-      - type: Reference
-        url: https://developer.sophos.com/apis
-      - type: GettingStarted
-        url: https://developer.sophos.com/getting-started
-      - type: ChangeLog
-        url: https://developer.sophos.com/whatsnew
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/sophos/refs/heads/main/openapi/sophos-central-siem-openapi.yml
-    contact:
-      - FN: Sophos Developer Support
-        url: https://developer.sophos.com/
-        email: ''
+- aid: sophos:sophos-alerts-api
+  name: Sophos Alerts API
+  description: Security alerts from Sophos Central
+  humanURL: https://developer.sophos.com/
+  baseURL: https://api1.central.sophos.com/gateway
+  tags:
+  - Alerts
+  properties:
+  - type: OpenAPI
+    url: openapi/sophos-alerts-api-openapi.yml
+  - type: Documentation
+    url: https://developer.sophos.com/intro
+  - type: Reference
+    url: https://developer.sophos.com/apis
+  - type: GettingStarted
+    url: https://developer.sophos.com/getting-started
+  - type: ChangeLog
+    url: https://developer.sophos.com/whatsnew
+- aid: sophos:sophos-events-api
+  name: Sophos Events API
+  description: Security events from Sophos Central
+  humanURL: https://developer.sophos.com/
+  baseURL: https://api1.central.sophos.com/gateway
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/sophos-events-api-openapi.yml
+  - type: Documentation
+    url: https://developer.sophos.com/intro
+  - type: Reference
+    url: https://developer.sophos.com/apis
+  - type: GettingStarted
+    url: https://developer.sophos.com/getting-started
+  - type: ChangeLog
+    url: https://developer.sophos.com/whatsnew
 common:
   - type: AgenticAccess
     url: agentic-access/sophos-agentic-access.yml
