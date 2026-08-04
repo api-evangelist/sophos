@@ -1,0 +1,304 @@
+openapi: 3.0.0
+info:
+  title: Sophos Central SIEM API
+  description: >-
+    The Sophos Central SIEM API provides access to security alerts and events for
+    automating threat detection, incident response, and SIEM integration workflows.
+    Retrieve real-time alerts and events from Sophos Central to feed into your
+    security operations tooling.
+  version: v1
+  contact:
+    name: Sophos Developer Support
+    url: https://developer.sophos.com/
+  license:
+    name: Proprietary
+    url: https://www.sophos.com/en-us/legal/sophos-end-user-license-agreement
+servers:
+  - url: https://api1.central.sophos.com/gateway
+    description: Sophos Central SIEM API Gateway
+tags:
+  - name: Alerts
+    description: Security alerts from Sophos Central
+  - name: Events
+    description: Security events from Sophos Central
+paths:
+  /siem/v1/alerts:
+    get:
+      operationId: listAlerts
+      summary: List Security Alerts
+      description: >-
+        Retrieve security alerts for the customer based on the parameters
+        provided. Alerts are retrieved within the last 24 hours.
+      tags:
+        - Alerts
+      parameters:
+        - name: cursor
+          in: query
+          description: Pagination cursor identifier for fetching the next page of results
+          required: false
+          schema:
+            type: string
+        - name: from_date
+          in: query
+          description: >-
+            Unix timestamp in UTC specifying the start date for alerts. Must be
+            within the last 24 hours.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: from_date_offset_minutes
+          in: query
+          description: >-
+            Delay data collection by the specified number of minutes. Useful for
+            avoiding data gaps.
+          required: false
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: Maximum number of alerts to return. Default is 200, maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            default: 200
+            maximum: 1000
+        - name: x-api-key
+          in: header
+          description: API key for authentication
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer token for authentication
+          required: true
+          schema:
+            type: string
+        - name: X-Timestamp
+          in: header
+          description: Optional timestamp header
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with list of alerts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertsResponse'
+        '400':
+          description: Bad request - invalid parameters
+        '401':
+          description: Unauthorized - invalid or missing authentication
+        '429':
+          description: Rate limit exceeded
+        '500':
+          description: Internal server error
+  /siem/v1/events:
+    get:
+      operationId: listEvents
+      summary: List Security Events
+      description: >-
+        Retrieve security events for the customer based on the parameters
+        provided. Events are retrieved within the last 24 hours.
+      tags:
+        - Events
+      parameters:
+        - name: cursor
+          in: query
+          description: Pagination cursor identifier for fetching the next page of results
+          required: false
+          schema:
+            type: string
+        - name: from_date
+          in: query
+          description: >-
+            Unix timestamp in UTC specifying the start date for events. Must be
+            within the last 24 hours.
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: from_date_offset_minutes
+          in: query
+          description: >-
+            Delay data collection by the specified number of minutes.
+          required: false
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: Maximum number of events to return. Default is 200, maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            default: 200
+            maximum: 1000
+        - name: exclude_types
+          in: query
+          description: Comma-separated list of event types to exclude from the response
+          required: false
+          schema:
+            type: string
+        - name: x-api-key
+          in: header
+          description: API key for authentication
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer token for authentication
+          required: true
+          schema:
+            type: string
+        - name: X-Timestamp
+          in: header
+          description: Optional timestamp header
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with list of events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsResponse'
+        '400':
+          description: Bad request - invalid parameters
+        '401':
+          description: Unauthorized - invalid or missing authentication
+        '429':
+          description: Rate limit exceeded
+        '500':
+          description: Internal server error
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+    BearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    AlertsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alert'
+        has_more:
+          type: boolean
+          description: Whether there are more results available
+        next_cursor:
+          type: string
+          description: Cursor to use for fetching the next page
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the alert
+        when:
+          type: string
+          format: date-time
+          description: Timestamp when the alert was raised
+        severity:
+          type: string
+          description: Severity level of the alert
+          enum:
+            - low
+            - medium
+            - high
+        category:
+          type: string
+          description: Category of the alert
+        description:
+          type: string
+          description: Human-readable description of the alert
+        customer_id:
+          type: string
+          description: Customer identifier
+        tenant_id:
+          type: string
+          description: Tenant identifier
+        location:
+          type: string
+          description: Location or device associated with the alert
+        source:
+          type: string
+          description: Source system that generated the alert
+        threat:
+          type: string
+          description: Name of the threat if applicable
+        endpoint_id:
+          type: string
+          description: Identifier of the affected endpoint
+        endpoint_type:
+          type: string
+          description: Type of affected endpoint
+    EventsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        has_more:
+          type: boolean
+          description: Whether there are more results available
+        next_cursor:
+          type: string
+          description: Cursor to use for fetching the next page
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the event
+        when:
+          type: string
+          format: date-time
+          description: Timestamp when the event occurred
+        type:
+          type: string
+          description: Type of security event
+        category:
+          type: string
+          description: Category of the event
+        description:
+          type: string
+          description: Human-readable description of the event
+        customer_id:
+          type: string
+          description: Customer identifier
+        tenant_id:
+          type: string
+          description: Tenant identifier
+        location:
+          type: string
+          description: Location or device associated with the event
+        source:
+          type: string
+          description: Source system that generated the event
+        endpoint_id:
+          type: string
+          description: Identifier of the affected endpoint
+        endpoint_type:
+          type: string
+          description: Type of affected endpoint
+        severity:
+          type: string
+          description: Severity level
+          enum:
+            - low
+            - medium
+            - high
+security:
+  - ApiKeyAuth: []
+  - BearerAuth: []

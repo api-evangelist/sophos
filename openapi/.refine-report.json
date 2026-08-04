@@ -1,0 +1,16 @@
+{
+  "provider": "sophos",
+  "sources": [
+    "sophos-alerts-api-openapi.yml",
+    "sophos-events-api-openapi.yml"
+  ],
+  "outputs": [
+    "sophos-alerts-api-openapi.yml",
+    "sophos-events-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
