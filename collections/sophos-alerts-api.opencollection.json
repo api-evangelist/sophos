@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sophos Central SIEM Alerts API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Security Alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api1.central.sophos.com/gateway/siem/v1/alerts",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Timestamp",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor identifier for fetching the next page of results"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Unix timestamp in UTC specifying the start date for alerts. Must be within the last 24 hours."
+              },
+              {
+                "name": "from_date_offset_minutes",
+                "value": "",
+                "type": "query",
+                "description": "Delay data collection by the specified number of minutes. Useful for avoiding data gaps."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of alerts to return. Default is 200, maximum is 1000."
+              }
+            ]
+          },
+          "docs": "Retrieve security alerts for the customer based on the parameters provided. Alerts are retrieved within the last 24 hours."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
