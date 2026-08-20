@@ -58,6 +58,8 @@ apis:
   humanURL: https://developer.sophos.com/
   baseURL: https://api1.central.sophos.com/gateway
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
