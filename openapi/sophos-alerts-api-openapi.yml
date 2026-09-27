@@ -89,19 +89,6 @@ paths:
           description: Internal server error
 components:
   schemas:
-    AlertsResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Alert'
-        has_more:
-          type: boolean
-          description: Whether there are more results available
-        next_cursor:
-          type: string
-          description: Cursor to use for fetching the next page
     Alert:
       type: object
       properties:
@@ -146,6 +133,19 @@ components:
         endpoint_type:
           type: string
           description: Type of affected endpoint
+    AlertsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alert'
+        has_more:
+          type: boolean
+          description: Whether there are more results available
+        next_cursor:
+          type: string
+          description: Cursor to use for fetching the next page
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
