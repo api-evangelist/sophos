@@ -1,0 +1,36 @@
+slug: sophos
+provider: Sophos
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Alerts
+  spec_file: sophos-alerts-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.92
+  evidence: The Sophos Central SIEM API provides access to security alerts and events for automating threat
+    detection, incident response, and SIEM integration workflows; GET /siem/v1/alerts listAlerts List
+    Security Alerts
+  reason: Operations retrieve security alerts from a SIEM for threat detection and incident response —
+    squarely Threat Detection & Response Management, not financial-crime or monitoring-platform alerting.
+- tag: Events
+  spec_file: sophos-events-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.9
+  evidence: GET /siem/v1/events listEvents List Security Events; "Retrieve real-time alerts and events
+    from Sophos Central to feed into your security operations tooling"
+  reason: Security event retrieval feeding SOC/SIEM tooling; the schemas (Event, EventsResponse) are security
+    telemetry, so Threat Detection & Response is the fit rather than product telemetry or observability.

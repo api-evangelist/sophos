@@ -86,6 +86,9 @@ apis:
   - type: ChangeLog
     url: https://developer.sophos.com/whatsnew
 common:
+  - type: CapabilityMap
+    url: capabilities/sophos-capability-edges.yml
+    name: Sophos Business Capability Map
   - type: AgenticAccess
     url: agentic-access/sophos-agentic-access.yml
   - type: DomainSecurity
