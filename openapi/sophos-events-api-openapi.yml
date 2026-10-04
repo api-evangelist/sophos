@@ -95,19 +95,6 @@ paths:
           description: Internal server error
 components:
   schemas:
-    EventsResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-        has_more:
-          type: boolean
-          description: Whether there are more results available
-        next_cursor:
-          type: string
-          description: Cursor to use for fetching the next page
     Event:
       type: object
       properties:
@@ -152,6 +139,19 @@ components:
           - low
           - medium
           - high
+    EventsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        has_more:
+          type: boolean
+          description: Whether there are more results available
+        next_cursor:
+          type: string
+          description: Cursor to use for fetching the next page
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
