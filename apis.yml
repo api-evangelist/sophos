@@ -86,6 +86,12 @@ apis:
   - type: ChangeLog
     url: https://developer.sophos.com/whatsnew
 common:
+  - type: Plans
+    url: plans/sophos-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/sophos-rate-limits.yml
+  - type: FinOps
+    url: finops/sophos-finops.yml
   - type: CapabilityMap
     url: capabilities/sophos-capability-edges.yml
     name: Sophos Business Capability Map
