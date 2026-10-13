@@ -1,0 +1,41 @@
+generated: '2026-10-13'
+method: searched
+checked:
+- https://aws.amazon.com/marketplace/
+- https://azuremarketplace.microsoft.com/
+marketplace_apps: []
+edges:
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=6fd61dd9-e35f-4dff-aee0-e06454369856
+  listing_count: 3
+  apps:
+  - Sophos Endpoint Protection
+  - Sophos Central Cybersecurity - Secure Workloads, Data, Apps, and Access
+  - Cybersecurity as a Service for AWS
+  seller_name: Sophos
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Sophos
+  listing_count: 3
+  apps:
+  - Intelix
+  - Sophos Central Cybersecurity - Secure Workloads, Data, Apps, and Access
+  - Sophos Firewall
+  seller_name: Sophos
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
