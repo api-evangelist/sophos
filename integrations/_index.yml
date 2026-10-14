@@ -27,3 +27,16 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: sophos-microsoft-sentinel-own
+  label: Microsoft Sentinel (own)
+  partner: microsoft-sentinel
+  partner_name: Microsoft Sentinel (own)
+  category: Security - Threat Protection
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://github.com/Azure/Azure-Sentinel/tree/master/Solutions/Sophos%20Cloud%20Optix
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
