@@ -2,6 +2,10 @@
   "repo": "sophos",
   "feeds": [
     {
+      "source": "https://news.sophos.com/",
+      "error": "TimeoutError"
+    },
+    {
       "source": "https://support.sophos.com/",
       "feed_url": "https://support.sophos.com/",
       "title": "",
@@ -9,7 +13,7 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 17,
   "agent_pulled": "2026-07-04",
   "feed_nature": "vendor-blog",
