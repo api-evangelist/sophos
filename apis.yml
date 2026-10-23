@@ -93,6 +93,8 @@ apis:
   - type: ChangeLog
     url: https://developer.sophos.com/whatsnew
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/sophos/overview
   - type: Plans
     url: plans/sophos-plans-pricing.yml
   - type: RateLimits
