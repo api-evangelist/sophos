@@ -1,481 +1,450 @@
 {
+  "info": {
+    "_postman_id": "8c6a0082-01e4-45d3-80ff-656fb524b539",
+    "name": "Sophos Central SIEM Alerts API",
+    "description": "The Sophos Central SIEM API provides access to security alerts and events for automating threat detection, incident response, and SIEM integration workflows. Retrieve real-time alerts and events from Sophos Central to feed into your security operations tooling.\n\nContact Support:\n Name: Sophos Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:53:11.000Z",
+    "updatedAt": "2026-10-22T02:53:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8c6a0082-01e4-45d3-80ff-656fb524b539"
+  },
   "item": [
     {
-      "id": "519398a1-4b0b-42c6-983e-1e0893d1ca89",
-      "name": "Alerts",
-      "description": {
-        "content": "Security alerts from Sophos Central",
-        "type": "text/plain"
-      },
+      "name": "siem",
       "item": [
         {
-          "id": "05e2f337-43d8-41e4-a784-4cf9e0186c92",
-          "name": "List Security Alerts",
-          "request": {
-            "name": "List Security Alerts",
-            "description": {
-              "content": "Retrieve security alerts for the customer based on the parameters provided. Alerts are retrieved within the last 24 hours.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "siem",
-                "v1",
-                "alerts"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "cursor",
-                  "value": "<string>",
-                  "description": "Pagination cursor identifier for fetching the next page of results"
-                },
-                {
-                  "disabled": false,
-                  "key": "from_date",
-                  "value": "<long>",
-                  "description": "Unix timestamp in UTC specifying the start date for alerts. Must be within the last 24 hours."
-                },
-                {
-                  "disabled": false,
-                  "key": "from_date_offset_minutes",
-                  "value": "<integer>",
-                  "description": "Delay data collection by the specified number of minutes. Useful for avoiding data gaps."
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "200",
-                  "description": "Maximum number of alerts to return. Default is 200, maximum is 1000."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) API key for authentication",
-                "key": "x-api-key",
-                "value": "<string>"
-              },
-              {
-                "disabled": false,
-                "description": "Optional timestamp header",
-                "key": "X-Timestamp",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v1",
+          "item": [
             {
-              "id": "efefecae-741c-477b-9996-3dabb36ca6d3",
-              "name": "Successful response with list of alerts",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "siem",
-                    "v1",
-                    "alerts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "alerts",
+              "item": [
+                {
+                  "name": "List Security Alerts",
+                  "id": "fad312df-d2d7-4b91-9558-ec5e4055228d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) API key for authentication",
+                        "key": "x-api-key",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Optional timestamp header",
+                        "key": "X-Timestamp",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/siem/v1/alerts?cursor=<string>&from_date=<long>&from_date_offset_minutes=<integer>&limit=200",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "siem",
+                        "v1",
+                        "alerts"
+                      ],
+                      "query": [
+                        {
+                          "description": "Pagination cursor identifier for fetching the next page of results",
+                          "key": "cursor",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unix timestamp in UTC specifying the start date for alerts. Must be within the last 24 hours.",
+                          "key": "from_date",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "Delay data collection by the specified number of minutes. Useful for avoiding data gaps.",
+                          "key": "from_date_offset_minutes",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Maximum number of alerts to return. Default is 200, maximum is 1000.",
+                          "key": "limit",
+                          "value": "200"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve security alerts for the customer based on the parameters provided. Alerts are retrieved within the last 24 hours."
+                  },
+                  "response": [
                     {
-                      "key": "cursor",
-                      "value": "<string>"
+                      "id": "59999526-17f6-4783-91d4-206feb02a5b5",
+                      "name": "Successful response with list of alerts",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) API key for authentication",
+                            "key": "x-api-key",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Optional timestamp header",
+                            "key": "X-Timestamp",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/siem/v1/alerts?cursor=<string>&from_date=<long>&from_date_offset_minutes=<integer>&limit=200",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "siem",
+                            "v1",
+                            "alerts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination cursor identifier for fetching the next page of results",
+                              "key": "cursor",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unix timestamp in UTC specifying the start date for alerts. Must be within the last 24 hours.",
+                              "key": "from_date",
+                              "value": "<long>"
+                            },
+                            {
+                              "description": "Delay data collection by the specified number of minutes. Useful for avoiding data gaps.",
+                              "key": "from_date_offset_minutes",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Maximum number of alerts to return. Default is 200, maximum is 1000.",
+                              "key": "limit",
+                              "value": "200"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"when\": \"<dateTime>\",\n      \"severity\": \"low\",\n      \"category\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customer_id\": \"<string>\",\n      \"tenant_id\": \"<string>\",\n      \"location\": \"<string>\",\n      \"source\": \"<string>\",\n      \"threat\": \"<string>\",\n      \"endpoint_id\": \"<string>\",\n      \"endpoint_type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"when\": \"<dateTime>\",\n      \"severity\": \"low\",\n      \"category\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customer_id\": \"<string>\",\n      \"tenant_id\": \"<string>\",\n      \"location\": \"<string>\",\n      \"source\": \"<string>\",\n      \"threat\": \"<string>\",\n      \"endpoint_id\": \"<string>\",\n      \"endpoint_type\": \"<string>\"\n    }\n  ],\n  \"has_more\": \"<boolean>\",\n  \"next_cursor\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:53:12.000Z",
+                      "updatedAt": "2026-10-22T02:53:12.000Z",
+                      "uid": "35240-59999526-17f6-4783-91d4-206feb02a5b5"
                     },
                     {
-                      "key": "from_date",
-                      "value": "<long>"
+                      "id": "fb2df8f7-2bf7-428e-b18b-5aafaed84306",
+                      "name": "Bad request - invalid parameters",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) API key for authentication",
+                            "key": "x-api-key",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Optional timestamp header",
+                            "key": "X-Timestamp",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/siem/v1/alerts?cursor=<string>&from_date=<long>&from_date_offset_minutes=<integer>&limit=200",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "siem",
+                            "v1",
+                            "alerts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination cursor identifier for fetching the next page of results",
+                              "key": "cursor",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unix timestamp in UTC specifying the start date for alerts. Must be within the last 24 hours.",
+                              "key": "from_date",
+                              "value": "<long>"
+                            },
+                            {
+                              "description": "Delay data collection by the specified number of minutes. Useful for avoiding data gaps.",
+                              "key": "from_date_offset_minutes",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Maximum number of alerts to return. Default is 200, maximum is 1000.",
+                              "key": "limit",
+                              "value": "200"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:53:12.000Z",
+                      "updatedAt": "2026-10-22T02:53:12.000Z",
+                      "uid": "35240-fb2df8f7-2bf7-428e-b18b-5aafaed84306"
                     },
                     {
-                      "key": "from_date_offset_minutes",
-                      "value": "<integer>"
+                      "id": "9657a5ef-71ef-4301-b70f-a20216d8b056",
+                      "name": "Unauthorized - invalid or missing authentication",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) API key for authentication",
+                            "key": "x-api-key",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Optional timestamp header",
+                            "key": "X-Timestamp",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/siem/v1/alerts?cursor=<string>&from_date=<long>&from_date_offset_minutes=<integer>&limit=200",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "siem",
+                            "v1",
+                            "alerts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination cursor identifier for fetching the next page of results",
+                              "key": "cursor",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unix timestamp in UTC specifying the start date for alerts. Must be within the last 24 hours.",
+                              "key": "from_date",
+                              "value": "<long>"
+                            },
+                            {
+                              "description": "Delay data collection by the specified number of minutes. Useful for avoiding data gaps.",
+                              "key": "from_date_offset_minutes",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Maximum number of alerts to return. Default is 200, maximum is 1000.",
+                              "key": "limit",
+                              "value": "200"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:53:12.000Z",
+                      "updatedAt": "2026-10-22T02:53:12.000Z",
+                      "uid": "35240-9657a5ef-71ef-4301-b70f-a20216d8b056"
                     },
                     {
-                      "key": "limit",
-                      "value": "200"
+                      "id": "9dfa19db-3254-4631-9243-4d91653b25c4",
+                      "name": "Rate limit exceeded",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) API key for authentication",
+                            "key": "x-api-key",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Optional timestamp header",
+                            "key": "X-Timestamp",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/siem/v1/alerts?cursor=<string>&from_date=<long>&from_date_offset_minutes=<integer>&limit=200",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "siem",
+                            "v1",
+                            "alerts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination cursor identifier for fetching the next page of results",
+                              "key": "cursor",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unix timestamp in UTC specifying the start date for alerts. Must be within the last 24 hours.",
+                              "key": "from_date",
+                              "value": "<long>"
+                            },
+                            {
+                              "description": "Delay data collection by the specified number of minutes. Useful for avoiding data gaps.",
+                              "key": "from_date_offset_minutes",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Maximum number of alerts to return. Default is 200, maximum is 1000.",
+                              "key": "limit",
+                              "value": "200"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:53:12.000Z",
+                      "updatedAt": "2026-10-22T02:53:12.000Z",
+                      "uid": "35240-9dfa19db-3254-4631-9243-4d91653b25c4"
+                    },
+                    {
+                      "id": "34eb50a4-d074-47a6-b011-6618a89ea238",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) API key for authentication",
+                            "key": "x-api-key",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Optional timestamp header",
+                            "key": "X-Timestamp",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/siem/v1/alerts?cursor=<string>&from_date=<long>&from_date_offset_minutes=<integer>&limit=200",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "siem",
+                            "v1",
+                            "alerts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination cursor identifier for fetching the next page of results",
+                              "key": "cursor",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unix timestamp in UTC specifying the start date for alerts. Must be within the last 24 hours.",
+                              "key": "from_date",
+                              "value": "<long>"
+                            },
+                            {
+                              "description": "Delay data collection by the specified number of minutes. Useful for avoiding data gaps.",
+                              "key": "from_date_offset_minutes",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Maximum number of alerts to return. Default is 200, maximum is 1000.",
+                              "key": "limit",
+                              "value": "200"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:53:12.000Z",
+                      "updatedAt": "2026-10-22T02:53:12.000Z",
+                      "uid": "35240-34eb50a4-d074-47a6-b011-6618a89ea238"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) API key for authentication",
-                    "key": "x-api-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Bearer token for authentication",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Optional timestamp header",
-                    "key": "X-Timestamp",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "createdAt": "2026-10-22T02:53:12.000Z",
+                  "updatedAt": "2026-10-22T02:53:12.000Z",
+                  "uid": "35240-fad312df-d2d7-4b91-9558-ec5e4055228d"
                 }
               ],
-              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"when\": \"1951-12-06T02:17:56.384Z\",\n      \"severity\": \"low\",\n      \"category\": \"string\",\n      \"description\": \"string\",\n      \"customer_id\": \"string\",\n      \"tenant_id\": \"string\",\n      \"location\": \"string\",\n      \"source\": \"string\",\n      \"threat\": \"string\",\n      \"endpoint_id\": \"string\",\n      \"endpoint_type\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"when\": \"1964-12-14T01:45:28.104Z\",\n      \"severity\": \"low\",\n      \"category\": \"string\",\n      \"description\": \"string\",\n      \"customer_id\": \"string\",\n      \"tenant_id\": \"string\",\n      \"location\": \"string\",\n      \"source\": \"string\",\n      \"threat\": \"string\",\n      \"endpoint_id\": \"string\",\n      \"endpoint_type\": \"string\"\n    }\n  ],\n  \"has_more\": true,\n  \"next_cursor\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cdcbe9df-a0b7-4348-9be9-ffa1d4055eaa",
-              "name": "Bad request - invalid parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "siem",
-                    "v1",
-                    "alerts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "from_date",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "from_date_offset_minutes",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "200"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) API key for authentication",
-                    "key": "x-api-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Bearer token for authentication",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Optional timestamp header",
-                    "key": "X-Timestamp",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "d79be5ec-4534-4467-aab7-19fdb9a3b72d",
-              "name": "Unauthorized - invalid or missing authentication",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "siem",
-                    "v1",
-                    "alerts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "from_date",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "from_date_offset_minutes",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "200"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) API key for authentication",
-                    "key": "x-api-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Bearer token for authentication",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Optional timestamp header",
-                    "key": "X-Timestamp",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "44fcf00b-51d4-4766-b05a-1a7d8d0ebabf",
-              "name": "Rate limit exceeded",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "siem",
-                    "v1",
-                    "alerts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "from_date",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "from_date_offset_minutes",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "200"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) API key for authentication",
-                    "key": "x-api-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Bearer token for authentication",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Optional timestamp header",
-                    "key": "X-Timestamp",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "399ef609-3688-41bd-8f14-5ed0dba52df3",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "siem",
-                    "v1",
-                    "alerts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "from_date",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "from_date_offset_minutes",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "200"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) API key for authentication",
-                    "key": "x-api-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) Bearer token for authentication",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Optional timestamp header",
-                    "key": "X-Timestamp",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "83a761c0-da6a-4fa7-924d-62ca5f36a7fa",
+              "createdAt": "2026-10-22T02:53:12.000Z",
+              "updatedAt": "2026-10-22T02:53:12.000Z",
+              "uid": "35240-83a761c0-da6a-4fa7-924d-62ca5f36a7fa"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "4c69473d-9ebc-4c17-934a-350e48830402",
+          "createdAt": "2026-10-22T02:53:12.000Z",
+          "updatedAt": "2026-10-22T02:53:12.000Z",
+          "uid": "35240-4c69473d-9ebc-4c17-934a-350e48830402"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api1.central.sophos.com/gateway",
-      "key": "baseUrl"
+      "id": "205c0780-daf9-4cd2-8bcb-8b71c3e3c736",
+      "createdAt": "2026-10-22T02:53:12.000Z",
+      "updatedAt": "2026-10-22T02:53:12.000Z",
+      "uid": "35240-205c0780-daf9-4cd2-8bcb-8b71c3e3c736"
     }
   ],
   "auth": {
@@ -483,25 +452,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "x-api-key"
+        "value": "x-api-key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "5d0f6599-45de-4111-8cbf-f4595e48dc2c",
-    "name": "Sophos Central SIEM Alerts API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Sophos Central SIEM API provides access to security alerts and events for automating threat detection, incident response, and SIEM integration workflows. Retrieve real-time alerts and events from Sophos Central to feed into your security operations tooling.\n\nContact Support:\n Name: Sophos Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api1.central.sophos.com/gateway"
     }
-  }
+  ]
 }
